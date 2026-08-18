@@ -1,95 +1,284 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Smart Waste Management</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Waste Management System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
-<header>
-    <h1>♻ Smart Waste Management System</h1>
-    <p>Municipal Waste Monitoring & Collection Optimization</p>
-</header>
+    <!-- HEADER -->
+    <header>
+        <div class="header-content">
+            <h1>♻ Smart Waste Management System</h1>
+            <p>Municipal Waste Monitoring & Collection Optimization</p>
+        </div>
+    </header>
 
-<div class="container">
 
-    <h2>Waste Management Dashboard</h2>
+    <!-- MAIN CONTENT -->
+    <main class="container">
 
-    <div class="cards">
+        <h2>Waste Management Dashboard</h2>
 
-        <div class="card">
-            <h3>Total Bins</h3>
-            <p>25</p>
+
+        <!-- SUMMARY CARDS -->
+        <div class="cards">
+
+            <div class="card">
+                <h3>Total Bins</h3>
+                <p>{{ total_bins }}</p>
+                <span>Registered bins</span>
+            </div>
+
+
+            <div class="card">
+                <h3>High Priority</h3>
+                <p class="danger">{{ high_priority }}</p>
+                <span>Require collection</span>
+            </div>
+
+
+            <div class="card">
+                <h3>Normal Bins</h3>
+                <p class="success">{{ normal_bins }}</p>
+                <span>Operating normally</span>
+            </div>
+
+
+            <div class="card">
+                <h3>Active Alerts</h3>
+                <p class="warning">{{ total_alerts }}</p>
+                <span>Require attention</span>
+            </div>
+
         </div>
 
-        <div class="card">
-            <h3>High Priority</h3>
-            <p>4</p>
+
+        <!-- BIN STATUS -->
+        <section>
+
+            <div class="section-title">
+                <h2>Bin Status</h2>
+                <span class="live">● Live Data</span>
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Bin ID</th>
+                            <th>Location</th>
+                            <th>Fill Level</th>
+                            <th>Temperature</th>
+                            <th>Condition</th>
+                            <th>Priority</th>
+                        </tr>
+                    </thead>
+
+
+                    <tbody>
+
+                        {% for bin in bins %}
+
+                        <tr>
+
+                            <td>
+                                <strong>{{ bin["bin_id"] }}</strong>
+                            </td>
+
+                            <td>
+                                {{ bin["location"] }}
+                            </td>
+
+                            <td>
+
+                                <div class="fill-container">
+
+                                    <div class="fill-bar">
+
+                                        <div class="fill-value"
+                                             style="width: {{ bin['fill_level'] }}%;">
+                                        </div>
+
+                                    </div>
+
+                                    <span>
+                                        {{ bin["fill_level"] }}%
+                                    </span>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+                                {{ bin["temperature"] }} °C
+                            </td>
+
+
+                            <td>
+
+                                {% if bin["condition"] == "ABNORMAL" %}
+
+                                    <span class="badge abnormal">
+                                        ABNORMAL
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="badge normal">
+                                        NORMAL
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+
+                            <td>
+
+                                {% if bin["priority"] == "HIGH" %}
+
+                                    <span class="badge high">
+                                        HIGH
+                                    </span>
+
+                                {% elif bin["priority"] == "MEDIUM" %}
+
+                                    <span class="badge medium">
+                                        MEDIUM
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="badge low">
+                                        LOW
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ALERTS -->
+        <section class="alerts-section">
+
+            <div class="section-title">
+                <h2>System Alerts</h2>
+                <span class="alert-count">
+                    {{ total_alerts }} Active
+                </span>
+            </div>
+
+
+            <div class="alerts">
+
+                {% if total_alerts > 0 %}
+
+                    <div class="alert">
+                        <strong>⚠ Attention Required</strong>
+                        <p>
+                            Some waste bins require collection or inspection.
+                        </p>
+                    </div>
+
+                {% else %}
+
+                    <div class="alert success-alert">
+                        <strong>✓ No Active Alerts</strong>
+                        <p>
+                            All waste bins are operating normally.
+                        </p>
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </section>
+
+
+        <!-- SYSTEM STATUS -->
+        <div class="system-status">
+
+            <div>
+                <strong>System Status</strong>
+                <p>All services are operational</p>
+            </div>
+
+            <span class="operational">
+                ● OPERATIONAL
+            </span>
+
         </div>
 
-        <div class="card">
-            <h3>Normal Bins</h3>
-            <p>18</p>
+
+        <!-- BACKEND API INFORMATION -->
+        <div class="api-info">
+
+            <h3>Backend Services</h3>
+
+            <div class="api-grid">
+
+                <div>
+                    <strong>Flask API</strong>
+                    <span>Running</span>
+                </div>
+
+                <div>
+                    <strong>Database</strong>
+                    <span>SQLite</span>
+                </div>
+
+                <div>
+                    <strong>Container</strong>
+                    <span>Docker</span>
+                </div>
+
+                <div>
+                    <strong>Port</strong>
+                    <span>5000</span>
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="card">
-            <h3>Alerts</h3>
-            <p>3</p>
-        </div>
+    </main>
 
-    </div>
 
-    <h2>Bin Status</h2>
+    <!-- FOOTER -->
+    <footer>
 
-    <table>
-        <tr>
-            <th>Bin ID</th>
-            <th>Location</th>
-            <th>Fill Level</th>
-            <th>Condition</th>
-            <th>Priority</th>
-        </tr>
+        <p>
+            Smart Waste Management System |
+            Municipal Waste Collection Optimization
+        </p>
 
-        <tr>
-            <td>B101</td>
-            <td>Zone 1</td>
-            <td>92%</td>
-            <td>Normal</td>
-            <td class="high">HIGH</td>
-        </tr>
-
-        <tr>
-            <td>B102</td>
-            <td>Zone 2</td>
-            <td>68%</td>
-            <td>Normal</td>
-            <td class="low">LOW</td>
-        </tr>
-
-        <tr>
-            <td>B103</td>
-            <td>Zone 3</td>
-            <td>81%</td>
-            <td>Normal</td>
-            <td class="medium">MEDIUM</td>
-        </tr>
-
-        <tr>
-            <td>B104</td>
-            <td>Zone 4</td>
-            <td>95%</td>
-            <td>Abnormal</td>
-            <td class="high">HIGH</td>
-        </tr>
-
-    </table>
-
-    <div class="status">
-        <strong>System Status:</strong> ● Operational
-    </div>
-
-</div>
+    </footer>
 
 </body>
+
 </html>
