@@ -1,4 +1,4 @@
-# Smart Waste Management System
+Intern
 
 A full-stack Smart Waste Management System developed using Flask, SQLite, HTML, CSS, REST APIs, automated testing, and Docker.
 
