@@ -8,7 +8,7 @@ Features:
 - Classifies waste collection priority based on fill level.
 - Supports waste monitoring and management.Intern
 
-A full-stack Smart Waste Management System developed using Flask, SQLite, HTML, CSS, REST APIs, automated testing, and Docker.
+A modern waste management application that uses technology to monitor bin capacity and support efficient waste collection.
 
 The system helps monitor waste-bin conditions, identify high-priority bins, generate alerts, and analyze waste levels based on fill level and temperature.
 
