@@ -567,3 +567,46 @@ Features:
 - Identifies abnormal temperature conditions.
 - Classifies waste collection priority based on fill level.
 - Supports waste monitoring and management.
+
+## 23. Team Collaboration and Git Workflow
+
+This project uses Git and GitHub for team collaboration and version control.
+
+### Main Branch
+The main branch contains the integrated and updated project files.
+
+### Feature Branches
+
+Separate branches are created for individual modules:
+
+- feature/database-module
+- feature/analysis-module
+- feature/conflict-branch-a
+- feature/conflict-branch-b
+
+### Pull Request Workflow
+
+1. Create a feature branch from main.
+2. Make changes in the feature branch.
+3. Stage and commit the changes.
+4. Push the branch to GitHub.
+5. Create a Pull Request targeting main.
+6. Review the code changes.
+7. Merge the Pull Request after review.
+
+### Merge Conflict Resolution
+
+A merge conflict was intentionally created by modifying the same README project description differently in two branches.
+
+The conflict was resolved by combining both descriptions into one final project description.
+
+The resolved README was committed and pushed to GitHub.
+
+### Benefits of Version Control
+
+- Supports team collaboration.
+- Tracks project modifications.
+- Maintains development history.
+- Allows independent module development.
+- Helps identify and resolve merge conflicts.
+- Maintains a stable main branch.
