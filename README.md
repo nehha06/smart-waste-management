@@ -8,8 +8,7 @@ Features:
 - Classifies waste collection priority based on fill level.
 - Supports waste monitoring and management.Intern
 
-A Smart Waste Management System designed to monitor waste bins and improve waste collection efficiency.
-
+A Smart Waste Management System designed to monitor waste bins, monitor bin capacity, and improve waste collection efficiency.
 The system helps monitor waste-bin conditions, identify high-priority bins, generate alerts, and analyze waste levels based on fill level and temperature.
 
 ## 1. Problem Overview
