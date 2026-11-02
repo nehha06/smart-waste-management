@@ -1,3 +1,4 @@
+
 import sqlite3
 import os
 
@@ -66,3 +67,21 @@ def initialize_database():
 
     connection.commit()
     connection.close()
+
+
+def get_database_records(table_name):
+    allowed_tables = ["bins", "alerts"]
+
+    if table_name not in allowed_tables:
+        raise ValueError("Invalid table name")
+
+    connection = get_connection()
+
+    try:
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT * FROM {table_name}")
+        records = cursor.fetchall()
+        return records
+
+    finally:
+        connection.close()
