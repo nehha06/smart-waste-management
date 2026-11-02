@@ -1,4 +1,12 @@
-Intern
+## Analysis Module
+
+The analysis module evaluates waste-bin sensor readings.
+
+Features:
+- Checks waste-bin temperature.
+- Identifies abnormal temperature conditions.
+- Classifies waste collection priority based on fill level.
+- Supports waste monitoring and management.Intern
 
 A full-stack Smart Waste Management System developed using Flask, SQLite, HTML, CSS, REST APIs, automated testing, and Docker.
 
@@ -550,3 +558,13 @@ https://github.com/nehha06/smart-waste-management
 B.Tech - Artificial Intelligence and Machine Learning
 
 Saveetha School of Engineering
+
+## Analysis Module
+
+The analysis module evaluates waste-bin sensor readings.
+
+Features:
+- Checks waste-bin temperature.
+- Identifies abnormal temperature conditions.
+- Classifies waste collection priority based on fill level.
+- Supports waste monitoring and management.
